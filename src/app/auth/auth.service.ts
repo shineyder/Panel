@@ -5,6 +5,7 @@ import { getDeepFromObject, NbAuthService, NbTokenService, NB_AUTH_OPTIONS } fro
 import { Router } from "@angular/router";
 import { User } from "../pages/home-adm/models/user.model";
 import { map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -15,13 +16,11 @@ export class AuthService {
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     private http: HttpClient,
     private nbAuthService: NbAuthService,
-    private router: Router,) {
+    private router: Router) {
   }
 
-  baseUrl = "http://localhost:8000/api/auth/";
-
   getUserAuthenticated(): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}user`).pipe(
+    return this.http.get<User>(`${environment.baseURL}/auth/user`).pipe(
       map((obj) => obj),
       );
   }
@@ -37,7 +36,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.baseUrl}logout`, {});
+    return this.http.post(`${environment.baseURL}/auth/logout`, {});
   }
 
   getConfigValue(key: string): any {

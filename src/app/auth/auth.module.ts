@@ -10,6 +10,7 @@ import {
   NbCheckboxModule,
   NbInputModule
 } from '@nebular/theme';
+import { environment } from '../../environments/environment';
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { AuthService } from './auth.service';
@@ -39,7 +40,7 @@ import { NgxRegisterComponent } from './register/register.component';
             key: 'token',
           },
 
-          baseEndpoint: 'http://localhost:8000/api',
+          baseEndpoint: environment.baseURL,
           login: {
             endpoint: '/auth/login',
             method: 'post',
