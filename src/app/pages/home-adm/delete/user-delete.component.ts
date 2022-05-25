@@ -3,7 +3,7 @@ import { NbDialogRef } from '@nebular/theme';
 import { UserService } from '../userService';
 
 @Component({
-  selector: 'user-delete',
+  selector: 'app-user-delete',
   templateUrl: './user-delete.component.html',
 })
 export class UserDeleteComponent{

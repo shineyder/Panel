@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'resource-product',
+  selector: 'app-resource-product',
   templateUrl: './product.component.html',
 })
 export class ResourceProductComponent {

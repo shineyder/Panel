@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 import { UserService } from '../userService';
 
 @Component({
-  selector: 'user-update',
+  selector: 'app-user-update',
   templateUrl: './user-update.component.html',
   styleUrls: ['./user-update.component.scss'],
 })

@@ -8,7 +8,7 @@ import { UserUpdateComponent } from './update/user-update.component';
 import { UserService } from './userService';
 
 @Component({
-  selector: 'ngx-home-adm',
+  selector: 'app-ngx-home-adm',
   templateUrl: './home-adm.component.html',
   styleUrls: ['./home-adm.component.scss'],
 })

@@ -8,7 +8,7 @@ import { AuthService } from '../../../auth/auth.service';
 import { User } from '../../../pages/home-adm/models/user.model';
 
 @Component({
-  selector: 'ngx-header',
+  selector: 'app-ngx-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })

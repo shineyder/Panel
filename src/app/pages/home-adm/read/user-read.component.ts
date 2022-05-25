@@ -8,7 +8,7 @@ import { UserService } from '../userService';
 
 
 @Component({
-  selector: 'user-read',
+  selector: 'app-user-read',
   templateUrl: './user-read.component.html',
 })
 export class UserReadComponent implements OnInit{

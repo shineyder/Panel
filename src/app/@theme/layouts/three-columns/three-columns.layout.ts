@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-three-columns-layout',
+  selector: 'app-ngx-three-column-layout',
   styleUrls: ['./three-columns.layout.scss'],
   template: `
     <nb-layout windowMode>
       <nb-layout-header fixed>
-        <ngx-header></ngx-header>
+        <app-ngx-header></app-ngx-header>
       </nb-layout-header>
 
       <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
@@ -24,7 +24,7 @@ import { Component } from '@angular/core';
       </nb-layout-column>
 
       <nb-layout-footer fixed>
-        <ngx-footer></ngx-footer>
+        <app-ngx-footer></app-ngx-footer>
       </nb-layout-footer>
     </nb-layout>
   `,
