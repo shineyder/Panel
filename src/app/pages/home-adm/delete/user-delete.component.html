@@ -1,0 +1,8 @@
+<nb-card>
+  <nb-card-header>Deletar Usuário</nb-card-header>
+  <nb-card-body>Tem certeza que deseja remover este usuário?</nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" (click)="close()">Cancel</button>
+    <button nbButton status="danger" (click)="delete(identifier)">Confirmar</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,56 @@
+<nb-card>
+  <nb-card-header>Atualizar Permissões</nb-card-header>
+  <nb-card-body>
+    <!-- <form [formGroup]="formUpdatePermission" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <select formControlName="resource_id" name="resource_id">
+          <option value="1">Produtos</option>
+          <option value="2">Categorias</option>
+          <option value="3">Marcas</option>
+        </select>
+      </div>
+      <div class="demo-items">
+        <input type="checkbox" name="view" formControlName="view"/>
+        <label for="view">Vizualizar</label>
+      </div>
+      <div class="demo-items">
+        <input type="checkbox" name="create" formControlName="create"/>
+        <label for="create">Criar</label>
+      </div>
+      <div class="demo-items">
+        <input type="checkbox" name="update" formControlName="update"/>
+        <label for="update">Atualizar</label>
+      </div>
+      <div class="demo-items">
+        <input type="checkbox" name="delete" formControlName="delete"/>
+        <label for="delete">Deletar</label>
+      </div>
+      <button nbButton status="primary" (click)="close()">Cancel</button>
+      <button nbButton status="success" type="submit">Enviar</button>
+    </form> -->
+
+    <!-- <div [formGroup]="formUpdatePermission"> -->
+    <form [formGroup]="formUpdatePermission">
+      <div formArrayName="resource_permissions">
+        <div *ngFor="let resource_permission of formUpdatePermission.get('resource_permissions').value; let i=index">
+          <div [formGroupName]="i">
+            <nb-accordion>
+              <nb-accordion-item>
+                <nb-accordion-item-header class="uppercase">
+                  <!-- {{ i.value.resource }} -->
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                  <input type="checkbox" formControlName="view"> View
+                  <input type="checkbox" formControlName="create"> Create
+                  <input type="checkbox" formControlName="update"> Update
+                  <input type="checkbox" formControlName="delete"> Delete
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+            </nb-accordion>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- </div> -->
+  </nb-card-body>
+</nb-card>

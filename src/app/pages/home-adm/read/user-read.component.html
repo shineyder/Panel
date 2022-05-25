@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-body>
+    <!-- <h5> {{user.name}} </h5>
+    <h5> {{user.email}} </h5> -->
+
+    <table>
+      <tr>
+        <th>Recurso</th>
+        <th>Vizualizar</th>
+        <th>Criar</th>
+        <th>Atualizar</th>
+        <th>Deletar</th>
+        <th>Ação</th>
+      </tr>
+      <tr>
+        <td> Produto </td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td>
+          <button nbButton status="primary" (click)="openUpdateDialog(user.id)">Editar</button>
+        </td>
+      </tr>
+      <tr>
+        <td> Categoria </td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td>
+          <button nbButton status="primary" (click)="openUpdateDialog(user.id)">Editar</button>
+        </td>
+      </tr>
+      <tr>
+        <td> Marca </td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td><div *ngIf=""><input type="checkbox" checked disabled></div></td>
+        <td>
+          <button nbButton status="primary" (click)="openUpdateDialog(user.id)">Editar</button>
+        </td>
+      </tr>
+    </table>
+  </nb-card-body>
+
+  <button nbButton status="secundary" routerLink="../../../homeAdm">Voltar</button>
+</nb-card>
