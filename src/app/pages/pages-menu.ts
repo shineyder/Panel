@@ -8,7 +8,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Auth',
+    title: 'Autenticação',
     icon: 'lock-outline',
     children: [
       {
@@ -16,7 +16,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/auth/login',
       },
        {
-        title: 'Register',
+        title: 'Registrar',
         link: '/auth/sign-up',
       },
     ],
@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/homeAdm',
   },
   {
-    title: 'Resources',
+    title: 'Recursos',
     icon: 'corner-down-right-outline',
     children: [
       {

@@ -5,3 +5,22 @@
     transform: translate3d(0, 0, 0);
   }
 }
+
+table {
+  width: 100%;
+}
+
+td {
+  padding-left: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+th {
+  text-align: center;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}

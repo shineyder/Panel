@@ -53,22 +53,24 @@ export class HomeAdmComponent implements OnInit {
     })
   }
 
-  openUpdateDialog(user: User) {
-    this.windowService.open(UserUpdateComponent, { context: { user, resources: this.resources } })
-    .onClose.subscribe(result => {
-      if (result[0] == 'updated') {
+  openUpdateWindow(user: User) {
+    this.windowService.open(
+      UserUpdateComponent,
+      {
+        context: { user, resources: this.resources },
+        title: "Atualizar Permissões",
+      }
+    ).onClose.subscribe(() => {
+      var userUpdated = JSON.parse(window.localStorage.getItem('tmp_user_data'))
+
+      if (userUpdated != null) {
+        this.users.find(x => x.id === userUpdated.user_id)
+        .resource_permissions = userUpdated.resource_permissions
+        window.localStorage.removeItem('tmp_user_data')
         this.showMessage('success', 'Sucesso', 'Usuário atualizado com sucesso');
       }
     })
   }
-
-  /* update(user: Users) {
-    this.userService.update(user).subscribe(users => {
-      this.users[
-        this.users.indexOf(this.users.find(x => x.id === users.id))
-      ] = users
-    })
-  } */
 
   showMessage(status: NbComponentStatus, title: string, message: string) {
     this.toastrService.show(message, title, { status });

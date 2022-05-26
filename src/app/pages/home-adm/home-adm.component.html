@@ -14,7 +14,7 @@
         <td> {{ user.name }} </td>
         <td> {{ user.email }} </td>
         <td>
-          <button nbButton status="primary" (click)="openUpdateDialog(user)">Atualizar</button>
+          <button nbButton status="primary" (click)="openUpdateWindow(user)">Atualizar</button>
         </td>
         <td>
           <button nbButton status="danger" (click)="openDeleteDialog(user.id)">Deletar</button>
@@ -23,5 +23,3 @@
     </table>
   </nb-card-body>
 </nb-card>
-
-<!-- routerLink="read/{{user.id}}" -->

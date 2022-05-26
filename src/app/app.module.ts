@@ -23,10 +23,13 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-
 import { AuthGuard } from './auth-guard.service';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { AuthInterceptor } from './auth-interceptor.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MultipleSessionGuard } from './multiple-session-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +54,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     AuthGuard,
+    MultipleSessionGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],

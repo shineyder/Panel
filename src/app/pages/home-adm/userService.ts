@@ -35,7 +35,8 @@ export class UserService {
   }
 
   updatePermissions(data) {
-    return this.http.post(`${environment.baseURL}/user/permission`, data);
+    return this.http.post(`${environment.baseURL}/user/permission`, data)
+    .subscribe(result => {});
   }
 
   delete(id: number) {

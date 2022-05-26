@@ -76,10 +76,6 @@ import { NgxRegisterComponent } from './register/register.component';
             error: true,
           }
         },
-        logout: {
-          redirectDelay: 0,
-          strategy: 'email',
-        }
       },
     }),
   ],

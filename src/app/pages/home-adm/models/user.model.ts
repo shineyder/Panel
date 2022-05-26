@@ -12,6 +12,7 @@ export interface User {
 
 interface ResourcePermission {
   id?: number
+  resource_id?: number
   view: boolean
   create: boolean
   update: boolean

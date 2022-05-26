@@ -1,7 +1,11 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import {
+  ExtraOptions,
+  RouterModule,
+  Routes
+} from '@angular/router';
 import { NgModule } from '@angular/core';
-
 import { AuthGuard } from './auth-guard.service';
+import { MultipleSessionGuard } from './multiple-session-guard.service';
 
 export const routes: Routes = [
   {
@@ -11,10 +15,18 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [MultipleSessionGuard],
     loadChildren: () => import('./auth/auth.module').then(m => m.NgxAuthModule),
   },
-  { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages/dashboard' },
+  {
+    path: '',
+    redirectTo: 'pages/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'pages/dashboard'
+  },
 ];
 
 const config: ExtraOptions = {
