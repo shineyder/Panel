@@ -1,11 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
+import {
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import {
+  NbComponentStatus,
+  NbMenuService,
+  NbSidebarService,
+  NbToastrService
+} from '@nebular/theme';
 
 import { LayoutService } from '../../../@core/utils';
-import { filter, takeUntil } from 'rxjs/operators';
+import {
+  filter,
+  takeUntil
+} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AuthService } from '../../../auth/auth.service';
 import { User } from '../../../pages/home-adm/models/user.model';
+import { StorageService } from '../../../storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ngx-header',
@@ -25,13 +39,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private layoutService: LayoutService,
-    private userAuthService: AuthService) {
+    private userAuthService: AuthService,
+    private localStorageService: StorageService,
+    private toastrService: NbToastrService,
+    private router: Router,
+    ) {
   }
 
   ngOnInit() {
-    this.userAuthService.getUserAuthenticated().subscribe(user => {
-      window.localStorage.setItem('auth_user', JSON.stringify(user))
+    this.userAuthService.getUserAuthenticated()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(user => {
+      this.localStorageService.set('auth_user', user)
       this.user = user
+    }, error => {
+      this.localStorageService.clear()
+      this.router.navigate(['auth/login']);
     });
 
     this.menuService.onItemClick()
@@ -64,5 +87,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  showMessage(status: NbComponentStatus, title: string, message: string) {
+    this.toastrService.show(message, title, { status });
   }
 }

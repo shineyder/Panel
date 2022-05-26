@@ -4,8 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from './@core/utils/analytics.service';
-import { SeoService } from './@core/utils/seo.service';
+import { NbToastrService } from '@nebular/theme';
+import { Observable, Observer, fromEvent, merge } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ngx',
@@ -13,11 +14,31 @@ import { SeoService } from './@core/utils/seo.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService, private seoService: SeoService) {
+  private connectionToastr: any;
+
+  constructor(private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
-    this.analytics.trackPageViews();
-    this.seoService.trackCanonicalChanges();
+    this.createOnline$().subscribe(isOnline => {
+      if (!isOnline){
+        this.connectionToastr = this.toastrService.show('Aparentemente não há conexão com a internet!', 'Erro', { status: 'warning', duration: 0 })
+      }
+
+      if (isOnline && this.connectionToastr != undefined) {
+        this.connectionToastr.close()
+      }
+    })
+  }
+
+  createOnline$() {
+    return merge<boolean>(
+      fromEvent(window, 'offline').pipe(map(() => false)),
+      fromEvent(window, 'online').pipe(map(() => true)),
+      new Observable((sub: Observer<boolean>) => {
+        sub.next(navigator.onLine);
+        sub.complete();
+      })
+    );
   }
 }

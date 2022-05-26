@@ -1,16 +1,15 @@
-#card {
+nb-card {
   max-width: 70vw;
   max-height: 70vh;
+}
+
+form button {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .uppercase {
   text-transform: capitalize;
 }
 
-#btnSubmit {
-  margin-left: 5px;
-}
 
-#btnCancel {
-  margin-right: 5px;
-}

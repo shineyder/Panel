@@ -30,6 +30,7 @@ import {
 } from '@angular/forms';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { MultipleSessionGuard } from './multiple-session-guard.service';
+import { StorageService } from './storage.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -55,7 +56,8 @@ import { MultipleSessionGuard } from './multiple-session-guard.service';
   providers: [
     AuthGuard,
     MultipleSessionGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    StorageService,
   ],
   bootstrap: [AppComponent],
 })

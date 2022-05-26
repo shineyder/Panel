@@ -1,16 +1,24 @@
 import { Injectable } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
+import { NbToastrService } from "@nebular/theme";
+import { StorageService } from "../storage.service";
 
 @Injectable()
 export class RoleGuard implements CanActivate {
 
-  constructor(private router: Router)
+  constructor(
+    private router: Router,
+    private toastrService: NbToastrService,
+    private localStorageService: StorageService
+    )
   {
   }
 
   canActivate() {
-    if (JSON.parse(window.localStorage.getItem('auth_user')).isAdmin != true) {
+    var authUser = this.localStorageService.get('auth_user')
+    if (authUser.isAdmin != true) {
       this.router.navigate(['/pages/dashboard']);
+      this.toastrService.show('Você não tem permissão para acessar essa página!', 'Alerta!', { status: 'warning' })
     }
     return true;
   }

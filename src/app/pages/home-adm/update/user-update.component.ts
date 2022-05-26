@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { NbWindowRef } from '@nebular/theme';
+import { NbComponentStatus, NbToastrService, NbWindowRef } from '@nebular/theme';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { StorageService } from '../../../storage.service';
 import { Resource } from '../models/resource.model';
 import { User } from '../models/user.model';
 import { UserService } from '../userService';
@@ -17,10 +20,14 @@ export class UserUpdateComponent  implements OnInit{
 
   formUpdatePermission: FormGroup;
 
+  private ngUnsubscribe = new Subject<void>();
+
   constructor(
     public windowRef: NbWindowRef,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastrService: NbToastrService,
+    private localStorageService: StorageService
     )
   {
   }
@@ -63,11 +70,31 @@ export class UserUpdateComponent  implements OnInit{
   }
 
   onSubmit() {
-    window.localStorage.setItem(
-      'tmp_user_data',
-      JSON.stringify(this.formUpdatePermission.value)
-    );
     this.userService.updatePermissions(this.formUpdatePermission.value)
-    this.windowRef.close()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe(result => {
+      this.showMessage(
+        'success', 'Sucesso', 'Permissões de usuário atualizadas com sucesso'
+        );
+      this.localStorageService.set(
+        'tmp_user_data',
+        this.formUpdatePermission.value
+        );
+      this.windowRef.close()
+    }, error => {
+      this.showMessage(
+        'warning', 'Erro', 'Falha ao atualizar permissões do usuário'
+        );
+      this.windowRef.close()
+    })
+  }
+
+  showMessage(status: NbComponentStatus, title: string, message: string) {
+    this.toastrService.show(message, title, { status });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

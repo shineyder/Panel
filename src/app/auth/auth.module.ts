@@ -64,7 +64,7 @@ import { NgxRegisterComponent } from './register/register.component';
           redirectDelay: 0,
           strategy: 'email',
           showMessages: {
-            success: true,
+            success: false,
             error: true,
           },
         },
@@ -72,7 +72,7 @@ import { NgxRegisterComponent } from './register/register.component';
           redirectDelay: 0,
           strategy: 'email',
           showMessages: {
-            success: true,
+            success: false,
             error: true,
           }
         },

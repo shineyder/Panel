@@ -1,4 +1,4 @@
-<nb-card id="card">
+<nb-card>
   <nb-card-header>
     Nome: {{ user.name }}
   </nb-card-header>
@@ -14,16 +14,16 @@
               <nb-accordion-item-body formGroupName="{{i}}">
                 <nb-list>
                   <nb-list-item>
-                    <nb-checkbox formControlName="view">View</nb-checkbox>
+                    <nb-checkbox formControlName="view">Visualizar</nb-checkbox>
                   </nb-list-item>
                   <nb-list-item>
-                    <nb-checkbox formControlName="create">Create</nb-checkbox>
+                    <nb-checkbox formControlName="create">Criar</nb-checkbox>
                   </nb-list-item>
                   <nb-list-item>
-                    <nb-checkbox formControlName="update">Update</nb-checkbox>
+                    <nb-checkbox formControlName="update">Atualizar</nb-checkbox>
                   </nb-list-item>
                   <nb-list-item>
-                    <nb-checkbox formControlName="delete">Delete</nb-checkbox>
+                    <nb-checkbox formControlName="delete">Apagar</nb-checkbox>
                   </nb-list-item>
                 </nb-list>
               </nb-accordion-item-body>
@@ -32,8 +32,8 @@
         </div>
       </div>
       <br>
-      <button nbButton id="btnCancel" status="primary" (click)="close()">Cancelar</button>
-      <button nbButton id="btnSubmit" status="success" type="submit">Enviar</button>
+      <button nbButton status="primary" (click)="close()">Cancelar</button>
+      <button nbButton status="success" type="submit">Enviar</button>
     </form>
   </nb-card-body>
 </nb-card>

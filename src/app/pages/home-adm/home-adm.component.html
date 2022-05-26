@@ -10,16 +10,44 @@
         <th>Email</th>
         <th colspan="2">Ações</th>
       </tr>
-      <tr *ngFor="let user of users">
-        <td> {{ user.name }} </td>
-        <td> {{ user.email }} </td>
-        <td>
-          <button nbButton status="primary" (click)="openUpdateWindow(user)">Atualizar</button>
-        </td>
-        <td>
-          <button nbButton status="danger" (click)="openDeleteDialog(user.id)">Deletar</button>
-        </td>
-      </tr>
+      <ng-container *ngIf="isListReady()">
+        <tr *ngFor="let user of users">
+          <td> {{ user.name }} </td>
+          <td> {{ user.email }} </td>
+          <td>
+            <ng-container *ngIf="!resourceError">
+              <button nbButton status="primary" (click)="openUpdateWindow(user)">
+                Atualizar
+              </button>
+            </ng-container>
+            <ng-container *ngIf="resourceError">
+              <button nbButton status="primary" disabled (click)="openUpdateWindow(user)">
+                Atualizar
+              </button>
+            </ng-container>
+          </td>
+          <td>
+            <button nbButton status="danger" (click)="openDeleteDialog(user.id)">
+              Deletar
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="loading">
+        <tr>
+          <td colspan="4">Carregando...</td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="isListEmpty()">
+        <tr>
+          <td colspan="4">Nenhum usuário encontrado</td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="error">
+        <tr>
+          <td colspan="4">Falha ao listar os usuários</td>
+        </tr>
+      </ng-container>
     </table>
   </nb-card-body>
 </nb-card>

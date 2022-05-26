@@ -20,6 +20,7 @@ import {
 } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service'
 import { NbToastrService } from '@nebular/theme';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor, OnDestroy {
@@ -28,13 +29,14 @@ export class AuthInterceptor implements HttpInterceptor, OnDestroy {
 
   constructor(
     private toastrService: NbToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private localStorageService: StorageService,
   )
   {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    var tokenValid = JSON.parse(window.localStorage.getItem('auth_app_token'))
+    var tokenValid = this.localStorageService.get('auth_app_token')
 
     if (tokenValid == null) {
       return next.handle(req);
