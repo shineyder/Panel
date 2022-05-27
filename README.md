@@ -15,5 +15,5 @@ Para facilitar o teste da aplicação, o menu lateral possui links para todas as
 Clone o repositório (git clone https://github.com/shineyder/Panel.git) e entre na pasta do projeto<br>
 Execute o comando ```npm install``` para instalar as dependencias<br>
 OBS: Para evitar erros e conflitos, recomenda-se uso do Node.js versão 14.14.0<br>
-No arquivo *proxy.conf.json* e *src/app/environments/environment.ts* é configurado a URL da API<br>
-Para rodar a aplicação execute o campo **npm start** ou **ng serve --proxy-config proxy.conf.json**
+No arquivo ```proxy.conf.json``` e ```src/app/environments/environment.ts``` é configurado a URL da API<br>
+Para rodar a aplicação execute o campo ```npm start``` ou ```ng serve --proxy-config proxy.conf.json```
