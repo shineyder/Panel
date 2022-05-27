@@ -1,6 +1,6 @@
-# Panel
+# Painel Administrativo
 
-Teste Programador - Panel
+Painel feito em Angular para Teste Programador (Template usado: akveo/ngx-admin)
 
 Aplicação com Sistema de Login e níveis de acesso.
 
@@ -9,14 +9,11 @@ Usuários comuns são capazes de ver as telas referentes aos recursos que eles p
 
 Recursos: Produtos, Categorias e Marcas.
 
-Back-end: Laravel, banco de dados Mysql.<br>
-Autenticação: JWT Token.<br>
-Front-end: Angular (Template usado: ngx-admin).
-
 Para facilitar o teste da aplicação, o menu lateral possui links para todas as páginas, todo acesso não permitido é direcionado para tela inicial.
 
-OBS:<br>
-Versão do Node.js usado na instalação dos packages: 14.14.0.<br>
-Posteriormente atualizado para 14.15.0 para compilação.<br>
-Configuração da API em proxy.conf.json e src/app/environments/environment.ts.<br>
-"npm start" configurado para rodar comando "ng serve --proxy-config proxy.conf.json" (ambos servem para iniciar).
+<h3>Instalação</h3>
+Clone o repositório (git clone https://github.com/shineyder/API.git) e entre na pasta do projeto<br>
+Execute o comando **npm install** para instalar as dependencias<br>
+OBS: Para evitar erros e conflitos, recomenda-se uso do Node.js versão 14.14.0
+No arquivo *proxy.conf.json* e *src/app/environments/environment.ts* é configurado a URL da API
+Para rodar a aplicação execute o campo **npm start** ou **ng serve --proxy-config proxy.conf.json**
