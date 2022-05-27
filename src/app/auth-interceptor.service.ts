@@ -3,35 +3,25 @@ import {
   OnDestroy
 } from '@angular/core';
 import {
-  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest,
-  HttpStatusCode
+  HttpRequest
 } from '@angular/common/http';
 import { Observable,
-  Subject,
-  throwError
+  Subject
 } from 'rxjs';
-import {
-  catchError,
-  map
-} from 'rxjs/operators';
-import { AuthService } from './auth/auth.service'
-import { NbToastrService } from '@nebular/theme';
+import { map } from 'rxjs/operators';
 import { StorageService } from './storage.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(
-    private toastrService: NbToastrService,
-    private authService: AuthService,
-    private localStorageService: StorageService,
-  )
+  constructor(private localStorageService: StorageService)
   {
   }
 
@@ -47,19 +37,7 @@ export class AuthInterceptor implements HttpInterceptor, OnDestroy {
     });
 
     return next.handle(req1).pipe(
-      map((event: HttpEvent<any>) => {return event}),
-      catchError(
-        (
-          httpErrorResponse: HttpErrorResponse,
-          _: Observable<HttpEvent<any>>
-        ) => {
-          if (httpErrorResponse.status === HttpStatusCode.Unauthorized) {
-            this.toastrService.show('Sessão expirou!', 'Erro', { status: 'warning' })
-            this.authService.doLogout();
-          }
-          return throwError(httpErrorResponse);
-        }
-      )
+      map((event: HttpEvent<any>) => {return event})
     );
   }
 

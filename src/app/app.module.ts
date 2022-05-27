@@ -31,6 +31,7 @@ import {
 import { AuthInterceptor } from './auth-interceptor.service';
 import { MultipleSessionGuard } from './multiple-session-guard.service';
 import { StorageService } from './storage.service';
+import { RefreshTokenInterceptorService } from './refresh-token-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -57,6 +58,7 @@ import { StorageService } from './storage.service';
     AuthGuard,
     MultipleSessionGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptorService, multi: true },
     StorageService,
   ],
   bootstrap: [AppComponent],
